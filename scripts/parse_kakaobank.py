@@ -19,7 +19,7 @@ def get_time_category(hour):
 
 def parse_kakaobank():
     # CSV 불러오기
-    df = pd.read_csv(INPUT_PATH, encoding='cp949')
+    df = pd.read_csv(INPUT_PATH, encoding='utf-8-sig')
 
     # 컬럼명 표준화
     df = df.rename(columns={
