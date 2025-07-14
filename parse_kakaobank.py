@@ -3,8 +3,8 @@ import os
 from datetime import datetime
 
 # 경로
-INPUT_PATH = '../../scripts/data/raw/kakaobank_transactions.csv'
-OUTPUT_PATH = '../../scripts/data/parsed/kakaobank_parsed.csv'
+INPUT_PATH = '../data/raw/kakaobank_transactions.csv'
+OUTPUT_PATH = '../data/parsed/kakaobank_parsed.csv'
 
 def get_time_category(hour):
     if 5 <= hour < 12:
@@ -19,7 +19,7 @@ def get_time_category(hour):
 
 def parse_kakaobank():
     # CSV 불러오기
-    df = pd.read_csv(INPUT_PATH, encoding='cp949')
+    df = pd.read_csv(INPUT_PATH, encoding='utf-8-sig')
 
     # 컬럼명 표준화
     df = df.rename(columns={
