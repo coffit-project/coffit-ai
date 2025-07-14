@@ -33,13 +33,13 @@ df["hour"] = df["date"].dt.hour                     # 시(0~23)
 # 시간대 라벨링 함수
 def time_cat(hour):
     if 0 <= hour < 6:
-        return "새벽"
+        return "night"
     elif 6 <= hour < 12:
-        return "오전"
+        return "morning"
     elif 12 <= hour < 18:
-        return "오후"
+        return "afternoon"
     else:
-        return "저녁"
+        return "evening"
 
 df["time_category"] = df["hour"].apply(time_cat)
 
