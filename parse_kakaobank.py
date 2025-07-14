@@ -3,8 +3,8 @@ import os
 from datetime import datetime
 
 # 경로
-INPUT_PATH = '../data/raw/kakaobank_transactions.csv'
-OUTPUT_PATH = '../data/parsed/kakaobank_parsed.csv'
+INPUT_PATH = '../../scripts/data/raw/kakaobank_transactions.csv'
+OUTPUT_PATH = '../../scripts/data/parsed/kakaobank_parsed.csv'
 
 def get_time_category(hour):
     if 5 <= hour < 12:
