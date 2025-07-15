@@ -16,6 +16,7 @@ df['date'] = pd.to_datetime(df['date'], format="%Y.%m.%d %H:%M:%S", errors='coer
 
 # 5. 표준 컬럼 구성
 df['category'] = ''  # 라벨링은 추후 수동 작업
+df['bank'] = '국민은행'  # 모든 행에 동일하게 '국민은행' 입력
 df = df[['date', 'amount', 'merchant', 'category', 'type', 'bank']]
 
 # 6. 파생 컬럼 생성
