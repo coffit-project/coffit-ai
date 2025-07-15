@@ -8,9 +8,11 @@ df = df.rename(columns={
     "거래 일시": "date",
     "적요": "merchant",
     "거래 유형": "type",
-    "거래 기관": "bank",
     "거래 금액": "amount"
 })
+
+# 2-1. 은행 출처 컬럼 추가 (고정값으로 설정)
+df["bank"] = "토스뱅크"
 
 # 3. date → datetime 형식으로 변환
 df["date"] = pd.to_datetime(df["date"], format="%Y.%m.%d %H:%M:%S")
