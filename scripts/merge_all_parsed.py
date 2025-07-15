@@ -13,7 +13,6 @@ df_list = []
 
 for file in csv_files:
     df = pd.read_csv(file, encoding="utf-8-sig")
-    df["source_file"] = os.path.basename(file)  # Optional: 출처 파일명 기록
     df_list.append(df)
 
 # 4. 병합
