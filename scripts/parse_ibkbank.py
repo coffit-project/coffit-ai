@@ -25,34 +25,22 @@ df["day_of_week"] = df["date"].dt.dayofweek
 df["hour"] = df["date"].dt.hour
 
 def get_time_category(hour):
-    if 5 <= hour < 11:
-        return "오전"
-    elif 11 <= hour < 17:
-        return "오후"
+    if 5 <= hour < 12:
+        return "morning"
+    elif 12 <= hour < 17:
+        return "afternoon"
     elif 17 <= hour < 21:
-        return "저녁"
+        return "evening"
     else:
-        return "새벽"
+        return "night"
 
 df["time_category"] = df["hour"].apply(get_time_category)
 
 df["period_code"] = df["date"].dt.strftime("%Y-W%U")                      # 분석용: 2025-W24
 df["period_range"] = df["date"].dt.to_period("W").astype(str)            # 시각화용: 2025-06-09/2025-06-15
 
-# 카테고리 분류
-def classify_category(merchant):
-    if any(keyword in merchant for keyword in ["커피", "카페", "A.M카페", "다방", "공차", "달다곰이", "탐앰탐스", "이디야", "투썸", "메머드", "핫브레드"]):
-        return "카페"
-    elif any(keyword in merchant for keyword in ["피코야", "분식", "치킨", "식당", "한솥", "KFC", "라멘", "마트", "이자카야", "롯데리아", "CU", "세븐", "맥도날드", "파리바개뜨", "버거킹", "밥", "버거", "김밥", "양식", "차돌", "마라탕", "연어", "냉면", "GS25", "떡볶이", "씨유"]):
-        return "식비"
-    elif any(keyword in merchant for keyword in ["하이힐", "의류", "쇼핑", "이랜드"]):
-        return "의류"
-    elif any(keyword in merchant for keyword in ["후불교통", "지하철", "버스", "택시", "기후동행"]):
-        return "교통"
-    else:
-        return "기타"
 
-df["category"] = df["merchant"].fillna("").apply(classify_category)
+df["category"] = df["merchant"].fillna("").apply()
 df["bank"] = "기업은행"
 
 # 표준 스키마로 정리
