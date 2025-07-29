@@ -17,9 +17,9 @@ def classify_category(merchant):
         return "교통"
     elif any(keyword in merchant for keyword in ["멜론", "유튜브 프리미엄", "넷플릭스", "넷플", "유튜브", "FLO", "티빙", "Tving", "Wave", "쿠팡플레이", "구독", "App"]):
         return "구독/정기결제"
-    elif any(keyword in merchant for keyword in ["ATM", "송금", "페이", "이체", "PAYCO"]):
+    elif any(keyword in merchant for keyword in ["ATM", "송금", "페이", "이체", "PAYCO", "캐시백", "출금", "수수료", "적금"]):
         return "금융/이체"
-    elif any(keyword in merchant for keyword in ["의류", "쇼핑", "이랜드", "CU", "세븐", "GS25", "씨유", "마트", "쿠팡", "무신사", "다이소", "무인양푼", "무지", "올리브", "에이블리", "브랜디", "KREAM", "아이파크몰", "지에스", "이니스프리", "더현대"]):
+    elif any(keyword in merchant for keyword in ["약국", "의류", "쇼핑", "이랜드", "CU", "세븐", "GS25", "씨유", "마트", "쿠팡", "무신사", "다이소", "무인양푼", "무지", "올리브", "에이블리", "브랜디", "KREAM", "아이파크몰", "지에스", "이니스프리", "더현대"]):
         return "쇼핑/의류"
     else:
         return "기타"
