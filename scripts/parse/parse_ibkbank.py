@@ -1,10 +1,21 @@
+import os
 import pandas as pd
 
-# 엑셀 파일 불러오기 (.xls 형식)
-df = pd.read_excel("../data/raw/ibk_transactions.xls", header=None, names=[
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+file_path = os.path.join(BASE_DIR, 'data', 'raw', 'ibk_transactions.xls')
+OUTPUT_PATH = os.path.join(BASE_DIR, 'data', 'parsed', 'ibk_parsed.csv')
+
+df = pd.read_excel(file_path, header=None, names=[
     "date", "withdraw", "deposit", "merchant",
     "message", "type", "bank"
-], engine='xlrd')  # ⚠️ xlrd가 설치되어 있어야 함
+], engine='xlrd')
+
+
+# # 엑셀 파일 불러오기 (.xls 형식)
+# df = pd.read_excel("../data/raw/ibk_transactions.xls", header=None, names=[
+#     "date", "withdraw", "deposit", "merchant",
+#     "message", "type", "bank"
+# ], engine='xlrd')  # ⚠️ xlrd가 설치되어 있어야 함
 
 # 금액 통합 (입금은 +, 출금은 -)
 def parse_amount(val):
@@ -40,7 +51,7 @@ df["period_code"] = df["date"].dt.strftime("%Y-W%U")                      # 분�
 df["period_range"] = df["date"].dt.to_period("W").astype(str)            # 시각화용: 2025-06-09/2025-06-15
 
 
-df["category"] = df["merchant"].fillna("").apply()
+df["category"] = ""
 df["bank"] = "기업은행"
 
 # 표준 스키마로 정리
@@ -49,7 +60,7 @@ df_final = df[[
     "bank", "day_of_week", "hour", "time_category", "period_code", "period_range"
 ]]
 
-df_final.to_csv("../data/parsed/ibk_parsed.csv", index=False, encoding='utf-8-sig')
+df_final.to_csv(OUTPUT_PATH, index=False, encoding='utf-8-sig')
 
 # 결과 미리 보기
 print(df_final.head())
