@@ -45,10 +45,11 @@ def parse_kakaobank():
     df['hour'] = df['date'].dt.hour
     df['time_category'] = df['hour'].apply(get_time_category)
     df["period_code"] = df["date"].dt.strftime("%Y-W%U")
+    df["period_range"] = df["date"].dt.to_period("W").astype(str)
 
     # 필요한 컬럼만 선택 (표준 스키마 순서대로)
     df = df[['date', 'amount', 'merchant', 'category', 'type', 'bank',
-             'day_of_week', 'hour', 'time_category', 'period_code']]
+             'day_of_week', 'hour', 'time_category', 'period_code', 'period_range']]
 
     # 저장
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
